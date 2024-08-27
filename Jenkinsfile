@@ -26,13 +26,13 @@ pipeline {
                     sh "cp -r ${localDir} /home/jenkins/"
 
                     // Deploy to remote server using rsync
-                    sh 'rsync -avz -e "ssh -i /home/jenkins/id_rsa" ${deployDir} ubuntu@3.110.142.123:/home/ubuntu/'
+                    sh 'rsync -avz -e "ssh -i /home/jenkins/.ssh/id_rsa" ${deployDir} ubuntu@3.110.142.123:/home/ubuntu/'
 
                     // Change ownership of remote directory
-                    sh 'ssh -i "/home/jenkins/id_ed25519" ubuntu@3.110.142.123 "sudo chown -R ubuntu:ubuntu /home/ubuntu/jenkins-node"'
+                    sh 'ssh -i "/home/jenkins/.ssh/id_rsa" ubuntu@3.110.142.123 "sudo chown -R ubuntu:ubuntu /home/ubuntu/jenkins-node"'
 
                     // Restart PM2 process
-                    sh 'ssh -i "/home/jenkins/id_rsa" ubuntu@3.110.142.123 "pm2 stop /home/ubuntu/jenkins-node/app.js && pm2 start /home/ubuntu/jenkins-node/app.js"'
+                    sh 'ssh -i "/home/jenkins/.ssh/id_rsa" ubuntu@3.110.142.123 "pm2 stop /home/ubuntu/jenkins-node/app.js && pm2 start /home/ubuntu/jenkins-node/app.js"'
                 }
             }
         }
