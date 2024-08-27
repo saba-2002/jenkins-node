@@ -32,7 +32,7 @@ pipeline {
                     sh 'ssh -i "/home/jenkins/.ssh/id_rsa" ubuntu@3.110.142.123 "sudo chown -R ubuntu:ubuntu /home/ubuntu/jenkins-node"'
 
                     // Restart PM2 process
-                    sh 'ssh -i "/home/jenkins/.ssh/id_rsa" ubuntu@3.110.142.123 "pm2 stop /home/ubuntu/jenkins-node/app.js && pm2 start /home/ubuntu/jenkins-node/app.js"'
+                    sh 'ssh -i "/home/jenkins/.ssh/id_rsa" ubuntu@3.110.142.123 "pm2 stop /home/ubuntu/jenkins-node/index.js && pm2 start /home/ubuntu/jenkins-node/index.js"'
                 }
             }
         }
