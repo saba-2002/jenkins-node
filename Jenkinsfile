@@ -26,7 +26,7 @@ pipeline {
                     sh "cp -r ${localDir} /home/jenkins/"
 
                     // Deploy to remote server using rsync
-                    sh 'rsync -avz -e "ssh -i /home/jenkins/.ssh/id_rsa" ${deployDir} ubuntu@3.110.142.123:/home/ubuntu/'
+                    sh 'scp -i "/home/jenkins/.ssh/id_rsa" -r jenkins-node ubuntu@3.110.142.123://home/ubuntu/'
 
                     // Change ownership of remote directory
                     sh 'ssh -i "/home/jenkins/.ssh/id_rsa" ubuntu@3.110.142.123 "sudo chown -R ubuntu:ubuntu /home/ubuntu/jenkins-node"'
