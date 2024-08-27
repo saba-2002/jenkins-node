@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Clone the repository into the workspace
-                git url: 'https://github.com/saba-2002/jenkins-node.git', branch: 'master'
+                git url: 'https://github.com/saba-2002/jenkins-node.git', branch: 'main'
             }
         }
 
